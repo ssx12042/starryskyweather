@@ -3,14 +3,14 @@ package com.ssx.starryskyweather.db;
 import org.litepal.crud.DataSupport;
 
 /**
- * 存放县（区）的数据信息
+ * 存放县的数据信息
  */
 public class County extends DataSupport {
 
     private int id;
-    private String countyName; // 县（区）的名字
-    private String weatherId; // 县（区）对应的天气id
-    private int cityId; // 当前县（区）所属市的id值
+    private String countyName; // 县的名字
+    private String weatherId; // 县对应的天气id
+    private int cityId; // 当前县所属市的id值
 
     public int getId() {
         return id;
