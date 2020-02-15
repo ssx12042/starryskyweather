@@ -1,0 +1,11 @@
+<litepal>
+    <dbname value="starry_sky_weather" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="com.ssx.starryskyweather.db.Province" />
+        <mapping class="com.ssx.starryskyweather.db.City" />
+        <mapping class="com.ssx.starryskyweather.db.County" />
+    </list>
+</litepal>
