@@ -5,6 +5,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.ssx.starryskyweather.gson.Forecast;
 import com.ssx.starryskyweather.gson.Weather;
+import com.ssx.starryskyweather.service.AutoUpdateService;
 import com.ssx.starryskyweather.util.HttpUtil;
 import com.ssx.starryskyweather.util.Utility;
 
@@ -97,9 +99,11 @@ public class WeatherActivity extends AppCompatActivity {
          */
         String bingPic = prefs.getString("bing_pic", null);
         if (bingPic != null) {
+            // 有缓存时直接加载图片
             Log.e("loadBingPic", bingPic);
             Glide.with(this).load(bingPic).into(bingPicImg);
         } else {
+            // 无缓存时去服务器查询图片
             Log.e("loadBingPic", "loadBingPic");
             loadBingPic();
         }
@@ -255,6 +259,10 @@ public class WeatherActivity extends AppCompatActivity {
         sportText.setText(sport);
 
         weatherLayout.setVisibility(View.VISIBLE);
+
+        // 启动自动更新服务
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
 }
